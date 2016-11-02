@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><ti:app xmlns:ti="http://ti.appcelerator.org">
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
 	<id>com.example.www</id>
 	<name>GetFBUserInfo</name>
 	<version>1.0</version>
@@ -41,10 +42,15 @@
 		</plist>
 	</ios>
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
+		<manifest>
+			<application>
+				<activity android:label="GetU­s­e­r­Info" android:name="com.facebook.FacebookActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+				<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+			</application>
+		</manifest>
 	</android>
 	<mobileweb>
-		<precache>
-		</precache>
+		<precache></precache>
 		<splash>
 			<enabled>true</enabled>
 			<inline-css-images>true</inline-css-images>
@@ -52,6 +58,7 @@
 		<theme>default</theme>
 	</mobileweb>
 	<modules>
+		<module version="5.2.0" platform="android">facebook</module>
 	</modules>
 	<deployment-targets>
 		<target device="android">true</target>
@@ -59,6 +66,7 @@
 		<target device="windows">false</target>
 	</deployment-targets>
 	<sdk-version>5.5.1.GA</sdk-version>
-<plugins><plugin version="1.0">ti.alloy</plugin>
-</plugins>
+	<plugins>
+		<plugin version="1.0">ti.alloy</plugin>
+	</plugins>
 </ti:app>

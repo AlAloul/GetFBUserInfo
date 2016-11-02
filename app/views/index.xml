@@ -1,5 +1,10 @@
 <Alloy>
-	<Window class="container">
-		<Label id="label" onClick="doClick">Hello, World</Label>
+	<Window id="win" class="container">
+
+				<Button onClick="onLogOut" top="20">LogOut</Button>
+				<Button onClick="onLogIn" top="80">LogIn</Button>
+				<Button onClick="isLogin" top="150">isLogin</Button>
+				<Button onClick="onGetData" top="200">Get user data</Button>
+						<Label id="label" top="300"></Label>
 	</Window>
 </Alloy>
