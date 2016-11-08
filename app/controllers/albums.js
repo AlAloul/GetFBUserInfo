@@ -6,13 +6,15 @@ $.win.addEventListener('open', function() {
     $.navigation.init({
         openMainWindow: function() {
             Alloy.createController("index").getView().open();
+        },
+        openProfilePage: function() {
+            Alloy.createController("profile").getView().open();
         }
     });
 
     init();
 
 });
-
 
 function makeList(data) {
     Ti.API.info('RESULT2: ' + data[0].name);
@@ -47,7 +49,7 @@ function makeList(data) {
         templates: {
             'template': myTemplate
         },
-        top:120,
+        top: 120,
         // Use 'template', that is, the myTemplate dict created earlier
         // for all items as long as the template property is not defined for an item.
         defaultItemTemplate: 'template'
@@ -80,6 +82,17 @@ function makeList(data) {
     $.win.add(listView);
 }
 
+function onSearch() {
+
+}
+
+function onOrder() {
+
+}
+
+function getUserInfo() {
+
+}
 
 function init() {
     var data;

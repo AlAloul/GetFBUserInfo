@@ -25,5 +25,18 @@ Alloy.Globals.openMainWindow = function(){
     $.win.open();
 };
 
+fb.addEventListener('login', function(e) {
+    Ti.API.info('LOGIN EVENT2');
+    if (e.success) {
+        Ti.API.info('SUCCESS LOGIN EVENT IS FIRED');
+        Alloy.createController("albums").getView().open();
+    } else if (e.cancelled) {
+        Ti.API.info('CANCELED LOGIN EVENT IS FIRED');
+        //$.label.text = 'Logged In = ' + fb.loggedIn;
+    } else {
+        Ti.API.info('ERROR EVENT LOGIN IS FIRED');
+        //$.label.text = 'Logged In = ' + fb.loggedIn;
+    }
+});
 
 $.win.open();

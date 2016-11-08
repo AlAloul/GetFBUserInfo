@@ -1,6 +1,7 @@
 <Alloy>
 	<!-- <ActionBar id="actionbar" title="Back" onHomeIconItemSelected="onBack"/> -->
 	<Menu id="menu">
+		<MenuItem id="profile" title="Profile" onClick="onProfile" showAsAction="Ti.Android.SHOW_AS_ACTION_ALWAYS"/>
 		<MenuItem id="logOut" title="logOut" onClick="onLogOut" showAsAction="Ti.Android.SHOW_AS_ACTION_ALWAYS"/>
 	</Menu>
 </Alloy>
