@@ -1,0 +1,22 @@
+<Alloy>
+	<Window id="win">
+		<Widget id="navigation" src="nav"/>
+		<View layout="vertical">
+			<Label top="10" left="10">Select albums and start slideshow</Label>
+			<View left="10" top="10" layout="horizontal" height="20">
+				<Label>Order</Label>
+				<Picker id="picker" class="button" title="animation" selectionIndicator="true">
+					<PickerRow value="0" title="Alphabet2"/>
+					<PickerRow value="1" title="Date create"/>
+				</Picker>
+			</View>
+			<View left="10" top="0" layout="horizontal" width="100%" height="50">
+					<Label width="30%">Search by tag</Label>
+					<TextField width="40%"hintText="Input tag"></TextField>
+					<Button width="30%">Search</Button>
+			</View>
+
+			<TableView id="albums"></TableView>
+		</View>
+	</Window>
+</Alloy>

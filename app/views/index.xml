@@ -1,10 +1,15 @@
 <Alloy>
-	<Window id="win" class="container">
 
-				<Button onClick="onLogOut" top="20">LogOut</Button>
-				<Button onClick="onLogIn" top="80">LogIn</Button>
-				<Button onClick="isLogin" top="150">isLogin</Button>
-				<Button onClick="onGetData" top="200">Get user data</Button>
-						<Label id="label" top="300"></Label>
+
+	<Window id="win" class="container">
+		<Label id="h1" top="50" >Welcom to slideshow app.</Label>
+		<Label top="100">Login to load your facebook photos.</Label>
+		<!-- <Button onClick="onLogOut" top="20">LogOut</Button>
+		<Button onClick="onLogIn" top="80">LogIn</Button>
+		<Button onClick="isLogin" top="150">isLogin</Button>
+		<Button onClick="onGetData" top="200">Get user data</Button>
+
+		<ImageView id="loaderImage" top="300" width="200"></ImageView> -->
+
 	</Window>
 </Alloy>

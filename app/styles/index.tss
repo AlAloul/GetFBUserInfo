@@ -13,3 +13,9 @@
 		fontSize: 12
 	}
 }
+
+"#h1":{
+	font:{
+		fontSize: 20
+	}
+}
