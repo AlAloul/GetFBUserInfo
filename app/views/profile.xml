@@ -1,5 +1,18 @@
 <Alloy>
-	<Window>
-		<Label>Profile page</Label>
+	<Window id="win">
+		<View layout="vertical">
+			<Label top="10">Profile</Label>
+			<View layout="horizontal" top="20">
+				<ImageView top="0" left="10" id="imageView" width="20%"></ImageView>
+				<View layout="vertical" left="10" top="0" width="70%">
+					<Label id="name" left="0" top="0"></Label>
+					<Label id="link" left="0" top="10"></Label>
+					<Label id="gender" left="0" top="10"></Label>
+					<Label id="locale" left="0" top="10"></Label>
+					<Label id="age_range" left="0" top="10"></Label>
+				</View>
+
+			</View>
+		</View>
 	</Window>
 </Alloy>

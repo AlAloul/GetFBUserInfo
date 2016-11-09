@@ -90,7 +90,7 @@ function onOrder() {
 
 }
 
-function getUserInfo() {
+function onSelectAlbum() {
 
 }
 

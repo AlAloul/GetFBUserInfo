@@ -5,13 +5,13 @@ $.win.fbProxy = fb.createActivityWorker({
 });
 
 $.win.addEventListener('open', function() {
-  //  $.label.text = 'Logged In = ' + fb.loggedIn;
+    //  $.label.text = 'Logged In = ' + fb.loggedIn;
     Ti.API.info('TRY LOGIN');
     fb.initialize();
 
     if (!fb.loggedIn) {
         $.win.add(fb.createLoginButton({
-            readPermissions: ['user_photos'],
+            readPermissions: ['user_photos','public_profile','email','user_hometown'],
             top: 200
         }));
     } else {
@@ -21,12 +21,17 @@ $.win.addEventListener('open', function() {
 });
 
 
-Alloy.Globals.openMainWindow = function(){
+Alloy.Globals.openMainWindow = function() {
     $.win.open();
 };
 
 fb.addEventListener('login', function(e) {
     Ti.API.info('LOGIN EVENT2');
+    //  accessToken
+    fb.accessToken = "abvc";
+    Ti.API.info(fb.accessToken);
+    Ti.API.info(fb.getAccessToken());
+
     if (e.success) {
         Ti.API.info('SUCCESS LOGIN EVENT IS FIRED');
         Alloy.createController("albums").getView().open();
@@ -38,5 +43,6 @@ fb.addEventListener('login', function(e) {
         //$.label.text = 'Logged In = ' + fb.loggedIn;
     }
 });
+
 
 $.win.open();
