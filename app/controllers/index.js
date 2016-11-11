@@ -10,6 +10,7 @@ $.win.addEventListener('open', function() {
     fb.initialize();
 
     if (!fb.loggedIn) {
+        Ti.API.info('ADD BUTTON');
         $.win.add(fb.createLoginButton({
             readPermissions: ['user_photos','public_profile','email','user_hometown'],
             top: 200

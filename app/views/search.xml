@@ -1,0 +1,9 @@
+<Alloy>
+	<Window id="win">
+		<!-- <View class="container" top="0" layout="horizontal">
+			 <Label width="30%">Search by tag</Label>
+			 <TextField id="searchField" width="40%" hintText="Input tag"></TextField>
+			 <Button width="30%" onClick="onSearch">Search photo</Button>
+		</View> -->
+	</Window>
+</Alloy>

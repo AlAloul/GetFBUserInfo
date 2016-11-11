@@ -11,9 +11,9 @@
 				</Picker>
 			</View>
 			<View left="10" top="0" layout="horizontal" width="100%" height="50">
-					<Label width="30%">Search by tag</Label>
-					<TextField width="40%"hintText="Input tag"></TextField>
-					<Button width="30%">Search</Button>
+					<!-- <Label width="30%">Search by tag</Label>
+					<TextField width="40%"hintText="Input tag"></TextField> -->
+					<Button width="30%" onClick="onSearch()">Search photo</Button>
 			</View>
 
 			<TableView id="albums"></TableView>
