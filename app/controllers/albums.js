@@ -83,7 +83,7 @@ function makeList(data) {
 }
 
 function onSearch() {
-
+  Alloy.createController("search").getView().open();
 }
 
 function onOrder() {
