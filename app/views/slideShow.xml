@@ -1,0 +1,12 @@
+<Alloy>
+	<Window fullscreen="true">
+		<ActionBar id="actionbar" title="Back" onHomeIconItemSelected="onBack"/>
+		<View class="container">
+			<View id="fullScr" class="container">
+
+				<!-- <Label class="label" top="20" left="20">FullScreen Mode</Label> -->
+				<ImageView id="loaderImage"></ImageView>
+			</View>
+		</View>
+	</Window>
+</Alloy>

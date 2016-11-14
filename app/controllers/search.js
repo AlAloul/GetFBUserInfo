@@ -22,6 +22,10 @@ function getAllPhotos(tag) {
     });
 }
 
+function onBack(){
+  Alloy.createController("albums").getView().open();
+}
+
 function searchPhoto(albums,tag){
   var detectedPhotos=[];
   albums.forEach(function(item){
@@ -36,20 +40,20 @@ function searchPhoto(albums,tag){
 });
 
 
-  Ti.API.info('Detected PHOTOS: ' + detectedPhotos[0].images);
+  //Ti.API.info('Detected PHOTOS: ' + detectedPhotos[0].images);
   renderDetectedPhotos(detectedPhotos);
 }
 
 
 function onSearch(){
   getAllPhotos($.searchField.value);
-  Ti.API.info('TAG: ' + $.searchField.value);
+//  Ti.API.info('TAG: ' + $.searchField.value);
 }
 
 var listView;
 function renderDetectedPhotos(data){
   if(listView){
-    $.win.remove(listView)
+    $.win.remove(listView);
   }
   //Ti.API.info('RESULT2: ' + data[0].name);
   //Ti.API.info('RESULT2: ' + data[0].cover_photo.picture);
@@ -91,14 +95,14 @@ function renderDetectedPhotos(data){
 
   var sections = [];
 
-  var fruitSection = Ti.UI.createListSection({
+  var albumsSection = Ti.UI.createListSection({
       headerTitle: 'List albums'
   });
-  var fruitDataSet = [];
+  var albumsDataSet = [];
 
   data.forEach(function(item) {
       if (item.name) {
-          fruitDataSet.push({
+          albumsDataSet.push({
               info: {
                   text: item.name
               },
@@ -109,8 +113,8 @@ function renderDetectedPhotos(data){
       }
   });
 
-  fruitSection.setItems(fruitDataSet);
-  sections.push(fruitSection);
+  albumsSection.setItems(albumsDataSet);
+  sections.push(albumsSection);
 
   listView.setSections(sections);
   $.win.add(listView);
