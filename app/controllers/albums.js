@@ -1,7 +1,8 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
-var fb = require('facebook');
+//var fb = require('facebook');
 var async = require('async');
+var albums;
 
 $.win.addEventListener('open', function() {
     $.navigation.init({
@@ -25,38 +26,32 @@ function onOrder() {
 
 }
 
-function onSelectAlbum() {
 
-}
-
-
-function makeList(data) {
+function renderList(data) {
     var section = Ti.UI.createTableViewSection();
 
-    data.forEach(function(item, index) {
-        if (item.name && item.cover_photo) {
-            var row = Ti.UI.createTableViewRow({
-                layout: 'horizontal',
-                width: '100%'
-            });
+    data.forEach(function(model, index) {
+        var row = Ti.UI.createTableViewRow({
+            layout: 'horizontal',
+            width: '100%'
+        });
 
-            var image = Ti.UI.createImageView({
-                image: item.cover_photo.picture,
-                height: "70",
-                id: index
-            });
+        var image = Ti.UI.createImageView({
+            image: model.get('coverPhoto'),
+            height: "70",
+            id: index
+        });
 
-            var label = Ti.UI.createLabel({
-                id: index,
-                left: 20,
-                text: item.name
-            });
+        var label = Ti.UI.createLabel({
+            id: index,
+            left: 20,
+            text: model.get('name')
+        });
 
-            row.add(image);
-            row.add(label);
+        row.add(image);
+        row.add(label);
 
-            section.add(row);
-        }
+        section.add(row);
     });
 
     $.albums.data = [section];
@@ -65,40 +60,18 @@ function makeList(data) {
 
 $.albums.addEventListener('click', function(event) {
     if (event.index !== undefined) {
-        async.waterfall([
-            getIdAlbumByIndex
-        ], function(err, result) {
-            var selectedAlbums = result.filter(function(item, i) {
-                return i === event.index;
-            })[0];
+        var args = {
+            id: albums.getIdAlbumByIndex(event.index)
+        };
 
-            var args = {
-                id: selectedAlbums.id
-            }
-            Ti.API.info("selectedAlbums.id "+ selectedAlbums.id);
-            Alloy.createController("slideShow", args).getView().open();
-        });
+        Ti.API.info("albums.getIdAlbumByIndex(event.index); " + albums.getIdAlbumByIndex(event.index));
+        Alloy.createController("slideShow", args).getView().open();
     }
 });
 
-function getIdAlbumByIndex(callback) {
-    var data;
-
-    fb.requestWithGraphPath('me', {
-        fields: 'albums{name, cover_photo{picture}}'
-    }, 'GET', function(e) {
-        if (e.success) {
-            Ti.API.info('RESULT: ' + e.result);
-            data = JSON.parse(e.result);
-            callback(null, data.albums.data);
-
-        } else if (e.error) {
-            alert(e.error);
-        } else {
-            alert('Unknown response');
-        }
-    });
-}
+$.win.addEventListener("close", function() {
+    $.destroy();
+});
 
 function init() {
     var data;
@@ -107,10 +80,10 @@ function init() {
         fields: 'albums{name, cover_photo{picture}}'
     }, 'GET', function(e) {
         if (e.success) {
-            Ti.API.info('RESULT: ' + e.result);
-            data = JSON.parse(e.result);
-            makeList(data.albums.data);
-
+            albums = Alloy.Collections.albums = Alloy.createCollection('albums');
+            albums.fetch();
+            albums.addCollection(e.result);
+            renderList(albums.models);
         } else if (e.error) {
             alert(e.error);
         } else {

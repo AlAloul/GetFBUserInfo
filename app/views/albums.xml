@@ -1,4 +1,5 @@
 <Alloy>
+
 	<Window id="win">
 		<Widget id="navigation" src="nav"/>
 		<View layout="vertical">
@@ -12,10 +13,17 @@
 			</View>
 			<View left="10" top="0" layout="horizontal" width="100%" height="50">
 
-					<Button onClick="onSearch">Search photo</Button>
+				<Button onClick="onSearch">Search photo</Button>
 			</View>
 
-			<TableView id="albums"></TableView>
+			<!-- <TableView id="albums" dataCollection="albums">
+				<TableViewRow layout="horizontal" width="100%">
+					<ImageView image="{coverPhoto}" height="70"></ImageView>
+					<Label text="{name}" left="20"></Label>
+				</TableViewRow>
+			</TableView> -->
+			<TableView id="albums" >
+			</TableView>
 		</View>
 	</Window>
 </Alloy>

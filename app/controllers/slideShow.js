@@ -1,6 +1,6 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
-var fb = require('facebook');
+
 var async = require('async');
 var idAlbum;
 if (args.id !== undefined && args.id !== null) {
@@ -17,13 +17,14 @@ if (args.id !== undefined && args.id !== null) {
         });
 
         Ti.API.info("photos", photos);
+        $.loaderImage.image = photos[0].source
         setInterval(function() {
             defaultAnimation(photos)
         }, 3000);
     });
 }
 
-var indexPhoto =0;
+var indexPhoto = 0;
 
 function getPhoto(callback) {
     var data;
@@ -49,9 +50,10 @@ function onBack() {
 }
 
 function defaultAnimation(photos) {
+    indexPhoto++;
     Ti.API.info("index2", indexPhoto);
 
     if (indexPhoto === photos.length) indexPhoto = 0;
     $.loaderImage.image = photos[indexPhoto].source;
-    indexPhoto++;
+
 }
