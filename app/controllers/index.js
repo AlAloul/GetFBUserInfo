@@ -11,7 +11,7 @@ $.win.addEventListener('open', function() {
 
     if (!fb.loggedIn) {
         $.win.add(fb.createLoginButton({
-            readPermissions: ['user_photos','public_profile','email','user_hometown'],
+            readPermissions: ['user_photos', 'public_profile', 'email', 'user_hometown'],
             top: 200
         }));
     } else {

@@ -8,13 +8,14 @@ exports.definition = {
         columns: {
             id: "Number",
             name: "String",
-            coverPhoto: "String"
-
+            coverPhoto: "String",
+            createdTime: "Date"
         },
         defaults: {
             id: null,
             name: "",
-            coverPhoto: ""
+            coverPhoto: "",
+            createdTime: null
         }
     },
     extendModel: function(Model) {
@@ -42,7 +43,12 @@ exports.definition = {
             	return Backbone.Collection.prototype.fetch.call(this, options);
             }
             */
-
+            initialize: function() {
+                //*** Default sort field.  Replace with your own default.
+                this.sortField = "name";
+                //*** Default sort direction
+                this.sortDirection = "ASC";
+            },
             addCollection: function(data) {
                 //var data
                 Ti.API.info('RESULT1: ' + data);
@@ -58,26 +64,54 @@ exports.definition = {
                             id: item.id,
                             name: item.name,
                             coverPhoto: item.cover_photo.picture, // default
+                            createdTime: item.created_time
                         });
                         model.save();
                     }
                 });
 
             },
-            getIdAlbumByIndex:function(index){
-              var album = this.filter(function(item, i) {
-                  return i === index;
-              })[0];
-              return album.get('id');
+            getIdAlbumByIndex: function(index) {
+                var album = this.filter(function(item, i) {
+                    return i === index;
+                })[0];
+                return album.get('id');
             },
-            orderAbs: function() {
-
+            setSortField: function(field, direction) {
+                this.sortField = field;
+                this.sortDirection = direction;
             },
-            orderTime: function() {
 
+            comparator: function(collection) {
+                return collection.get(this.sortField);
+            },
+            sortBy: function(iterator, context) {
+                Ti.API.info('SORT BY !! ' + context);
+                Ti.API.info('this.sortDirection !! ' + this.sortDirection);
+                var obj = this.models;
+                var direction = this.sortDirection;
+
+                return _.pluck(_.map(obj, function(value, index, list) {
+                    return {
+                        value: value,
+                        index: index,
+                        criteria: iterator.call(context, value, index, list)
+                    };
+                }).sort(function(left, right) {
+                    // swap a and b for reverse sort
+                    var a = direction === "ASC" ? left.criteria : right.criteria;
+                    var b = direction === "ASC" ? right.criteria : left.criteria;
+
+                    if (a !== b) {
+                        if (a > b || a === void 0) return 1;
+                        if (a < b || b === void 0) return -1;
+                    }
+                    return left.index < right.index ? -1 : 1;
+                }), 'value');
             }
         });
 
         return Collection;
     }
+
 };

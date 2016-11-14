@@ -1,7 +1,5 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 var args = $.args;
-//var fb = require('facebook');
-var async = require('async');
 var albums;
 
 $.win.addEventListener('open', function() {
@@ -22,10 +20,26 @@ function onSearch() {
     Alloy.createController("search").getView().open();
 }
 
-function onOrder() {
 
-}
+$.picker.addEventListener('change', function(e) {
+    Ti.API.info(e.row.value);
+    //selectAnimation(e.row.value);
 
+    switch (e.row.value) {
+        case 0:
+            albums.setSortField("name", "ASC");
+            albums.sort();
+            Ti.API.info('albums.models ' + albums.models[0].get('name'));
+            renderList(albums.models);
+            break;
+        case 1:
+            albums.setSortField("createdTime", "ASC");
+            albums.sort();
+            Ti.API.info('albums.models ' + albums.models[0].get('name'));
+            renderList(albums.models);
+            break;
+    }
+});
 
 function renderList(data) {
     var section = Ti.UI.createTableViewSection();
@@ -77,12 +91,13 @@ function init() {
     var data;
 
     fb.requestWithGraphPath('me', {
-        fields: 'albums{name, cover_photo{picture}}'
+        fields: 'albums{name, cover_photo{picture},created_time}'
     }, 'GET', function(e) {
         if (e.success) {
             albums = Alloy.Collections.albums = Alloy.createCollection('albums');
-            albums.fetch();
             albums.addCollection(e.result);
+            albums.fetch();
+            Ti.API.info('albums.models ' + albums.models[0].get('name'));
             renderList(albums.models);
         } else if (e.error) {
             alert(e.error);

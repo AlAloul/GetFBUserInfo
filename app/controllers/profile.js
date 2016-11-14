@@ -8,6 +8,10 @@ $.win.addEventListener('open', function() {
 
 });
 
+function onBack() {
+    Alloy.createController("albums").getView().open();
+}
+
 function init() {
     fb.requestWithGraphPath('me', {
         fields: 'picture, name, link, gender, locale, age_range'

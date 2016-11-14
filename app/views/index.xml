@@ -1,8 +1,7 @@
 <Alloy>
 
-
 	<Window id="win" class="container">
-		<Label id="h1" top="50" >Welcom to slideshow app.</Label>
+		<Label id="h1" top="50">Welcom to slideshow app.</Label>
 		<Label top="100">Login to load your facebook photos.</Label>
 		<!-- <Button onClick="onLogOut" top="20">LogOut</Button>
 		<Button onClick="onLogIn" top="80">LogIn</Button>

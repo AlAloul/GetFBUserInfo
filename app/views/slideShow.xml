@@ -1,6 +1,6 @@
 <Alloy>
 	<Window fullscreen="true">
-		<ActionBar id="actionbar" title="Back" onHomeIconItemSelected="onBack"/>
+		<ActionBar id="actionbar" title="Back" displayHomeAsUp="true" onHomeIconItemSelected="onBack"/>
 		<View class="container">
 			<View id="fullScr" class="container">
 

@@ -3,6 +3,8 @@ var args = $.args;
 
 var async = require('async');
 var idAlbum;
+var indexPhoto = 0;
+
 if (args.id !== undefined && args.id !== null) {
     idAlbum = args.id;
     Ti.API.info("ID CLCKED PHOTO", idAlbum);
@@ -17,14 +19,14 @@ if (args.id !== undefined && args.id !== null) {
         });
 
         Ti.API.info("photos", photos);
-        $.loaderImage.image = photos[0].source
+        $.loaderImage.image = photos[0].source;
         setInterval(function() {
-            defaultAnimation(photos)
+            defaultAnimation(photos);
         }, 3000);
     });
 }
 
-var indexPhoto = 0;
+
 
 function getPhoto(callback) {
     var data;
@@ -46,13 +48,11 @@ function getPhoto(callback) {
 }
 
 function onBack() {
-
+    Alloy.createController("albums").getView().open();
 }
 
 function defaultAnimation(photos) {
     indexPhoto++;
-    Ti.API.info("index2", indexPhoto);
-
     if (indexPhoto === photos.length) indexPhoto = 0;
     $.loaderImage.image = photos[indexPhoto].source;
 

@@ -1,10 +1,10 @@
 <Alloy>
 	<Window id="win">
-		<ActionBar id="actionbar" title="Back" onHomeIconItemSelected="onBack" displayHomeAsUp="true"/>
-		 <View class="container" top="0" layout="horizontal">
-				<Label width="30%">Search by tag</Label>
-				<SearchView id="searchField" ns="Ti.UI.Android" platform="android"/>
-				<Button width="30%" onClick="onSearch">Search photo</Button>
+		<ActionBar id="actionbar" title="Back" displayHomeAsUp="true" onHomeIconItemSelected="onBack"/>
+		<View class="container" top="0" layout="horizontal">
+			<Label width="30%">Search by tag</Label>
+			<SearchView id="searchField" ns="Ti.UI.Android" platform="android"/>
+			<Button width="30%" onClick="onSearch">Search photo</Button>
 		</View>
 	</Window>
 </Alloy>

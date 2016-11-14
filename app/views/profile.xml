@@ -1,5 +1,6 @@
 <Alloy>
 	<Window id="win">
+		<ActionBar id="actionbar" title="Back" displayHomeAsUp="true" onHomeIconItemSelected="onBack"/>
 		<View layout="vertical">
 			<Label top="10">Profile</Label>
 			<View layout="horizontal" top="20">
